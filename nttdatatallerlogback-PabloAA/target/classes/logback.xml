@@ -1,0 +1,35 @@
+<configuration debug="true" scan="true"
+	scanPeriod="10 seconds">
+
+	<!-- SALIDA DE LOG -->
+	<appender name="NTTDataLogRA"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>C://dev//logs//nttdatalog.log</file>
+		<append>true</append>
+		<immediateFlush>false</immediateFlush>
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>C://dev//logs//nttdatalog.%i.log.zip
+			</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>3</maxIndex>
+		</rollingPolicy>
+
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>50KB</maxFileSize>
+		</triggeringPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [%method] - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	
+
+	<!-- ROOT LOGGER -->
+	<root level="info">
+		<appender-ref ref="NTTDataLogRA" />
+	</root>
+
+</configuration>
